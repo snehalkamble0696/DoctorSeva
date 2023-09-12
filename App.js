@@ -1,40 +1,37 @@
-// How to Detect Call States in React Native App
-// https://aboutreact.com/detect-call-states/
-
-//Import React
-import React, {useState} from 'react';
-
-//Import required component
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Linking,
-  FlatList,
-  SafeAreaView,
-  Image,
-} from 'react-native';
-
-const App = () => {
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import HomeScreen from './src/Screens/HomeScreen';
+import ClinicNavigator from './src/Navigation/MainNavigator';
+import {Provider} from 'react-redux';
+import {combineReducers, createStore, applyMiddleware} from 'redux';
+import AppointmentReducer from './src/store/reducers/appointmentReducer';
+import AuthReducer from './src/store/reducers/AuthReducer';
+import PatientReducer from './src/store/reducers/PatientReducer';
+// import ReduxThunk from 'redux-thunk';
 
 
+
+const rootReducer = combineReducers({
+  appointment:AppointmentReducer,
+  auth:AuthReducer,
+  patient:PatientReducer,
+});
+
+// const store = createStore(rootReducer, applyMiddleware(ReduxThunk)); 
+export default function App() {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
-       
-        
-      </View>
-    </SafeAreaView>
+    // <Provider store={store}>
+    // <View style={styles.screen}>
+    <ClinicNavigator />
+    
+    // </View>
+    // </Provider>
   );
-};
-
-export default App;
+}
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    
   },
- 
 });
